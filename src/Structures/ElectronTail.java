@@ -8,8 +8,7 @@ public class ElectronTail extends Structure{
     }
 
     @Override
-    public int[][] addstruct(int [][] board) {
+    public void addstruct(int [][] board)  {
         board[startCol][startRow] = 3;
-        return board;
     }
 }

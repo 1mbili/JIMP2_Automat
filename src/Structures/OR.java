@@ -6,7 +6,7 @@ public class OR extends Structure {
     }
 
     @Override
-    public int[][] addstruct(int[][] board) {
+    public void addstruct(int [][] board) {
         int lp = 3; //liczba przewodnikw;
         // dwa przewody po 3 przewodniki
         for (int i = 0 ; i < 3; i+=2)
@@ -23,8 +23,6 @@ public class OR extends Structure {
 
         for(int i =lp+1; i < 2*lp+3 ; i++)
             board[startRow+1][startCol+i] = 1;
-
-        return board;
 
     }
 

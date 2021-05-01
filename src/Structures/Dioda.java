@@ -2,14 +2,14 @@ package Structures;
 
 public class Dioda extends Structure{
 
-    private String type;
+    private final String type;
     public Dioda(int startRow, int startCol, String type) {
         super(startRow, startCol);
         this.type = type;
     }
 
     @Override
-    public int[][] addstruct(int [][] board) {
+    public void addstruct(int [][] board) {
         int lp = 6; //liczba przewodnikw
         // Sześć przewodników
         for(int i =0; i < lp;i++)
@@ -19,8 +19,8 @@ public class Dioda extends Structure{
         for(int j =0; j<2;j++)
             for(int i=-1; i < 2;i++)
                 board[startRow+i][startCol+j+lp] = 1;
-
-        if (type.equals(new String("Reversed"))) {
+        String typed = "Reversed";
+        if (type.equals(typed)) {
             board[startRow][startCol + lp] = 0;
         }  else {
             board[startRow][startCol + lp+1] = 0;
@@ -30,7 +30,7 @@ public class Dioda extends Structure{
         for(int i =lp+2; i < 2*lp+2;i++)
             board[startRow][startCol+i] = 1;
 
-    return board;
+
 
     }
 }

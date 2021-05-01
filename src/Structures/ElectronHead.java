@@ -7,9 +7,9 @@ public class ElectronHead extends Structure{
     }
 
     @Override
-    public int[][] addstruct(int [][] board) {
+    public void addstruct(int [][] board) {
         board[startCol][startRow] = 2;
-        return board;
+
     }
 
 

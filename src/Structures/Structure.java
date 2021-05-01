@@ -2,6 +2,8 @@ package Structures;
 
 public class Structure {
 
+
+
     protected int startCol;
     protected int startRow;
 
@@ -11,9 +13,8 @@ public class Structure {
         this.startRow = startRow;
     }
 
-    public int[][] addstruct(int [][] board) {
-        return board;
-    }
+    public void addstruct(int [][] board) {}
+
 
 
 }
