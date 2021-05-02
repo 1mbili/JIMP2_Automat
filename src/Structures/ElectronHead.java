@@ -1,9 +1,8 @@
 package Structures;
 
 public class ElectronHead extends Structure{
-
-    public ElectronHead(int startRow, int startCol) {
-        super(startRow, startCol);
+    public ElectronHead(int startCol, int startRow) {
+        super(startCol, startRow);
     }
 
     @Override

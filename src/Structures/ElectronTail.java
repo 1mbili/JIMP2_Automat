@@ -1,10 +1,8 @@
 package Structures;
 
 public class ElectronTail extends Structure{
-
-
-    public ElectronTail(int startRow, int startCol) {
-        super(startRow, startCol);
+    public ElectronTail(int startCol, int startRow) {
+        super(startCol, startRow);
     }
 
     @Override

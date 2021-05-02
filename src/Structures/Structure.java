@@ -8,7 +8,7 @@ public class Structure {
     protected int startRow;
 
 
-    public Structure(int startRow, int startCol) {
+    public Structure(int startCol, int startRow) {
         this.startCol = startCol;
         this.startRow = startRow;
     }

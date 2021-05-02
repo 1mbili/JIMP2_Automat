@@ -1,8 +1,8 @@
 package Structures;
 
 public class XOR extends Structure {
-    public XOR(int startRow, int startCol) {
-        super(startRow, startCol);
+    public XOR(int startCol, int startRow) {
+        super(startCol, startRow);
     }
 
     @Override

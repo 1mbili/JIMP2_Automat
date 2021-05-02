@@ -3,8 +3,9 @@ package Structures;
 public class Dioda extends Structure{
 
     private final String type;
-    public Dioda(int startRow, int startCol, String type) {
-        super(startRow, startCol);
+
+    public Dioda(int startCol, int startRow, String type) {
+        super(startCol, startRow);
         this.type = type;
     }
 

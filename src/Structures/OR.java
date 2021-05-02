@@ -1,8 +1,8 @@
 package Structures;
 
 public class OR extends Structure {
-    public OR(int startRow, int startCol) {
-        super(startRow, startCol);
+    public OR(int startCol, int startRow) {
+        super(startCol, startRow);
     }
 
     @Override
