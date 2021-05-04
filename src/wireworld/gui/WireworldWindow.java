@@ -1,6 +1,7 @@
 package wireworld.gui;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -27,6 +28,22 @@ public abstract class WireworldWindow {
                     pathButton.setText("Opening " + selected.getAbsolutePath());
                     WireworldWindow.this.onOpen(selected.getAbsolutePath());
                 }
+            }
+        });
+        startButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                javax.swing.SwingUtilities.invokeLater(new Runnable() {
+                    public void run() {
+                        SecondWindow myWindow = new SecondWindow();
+                        JFrame newFrame = new JFrame("Automat");
+                        newFrame.setContentPane(myWindow.getSecondPanel());
+                        newFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                        newFrame.setPreferredSize(new Dimension(800, 600));
+                        newFrame.pack();
+                        newFrame.setVisible(true);
+                    }
+                });
             }
         });
     }
