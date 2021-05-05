@@ -2,7 +2,7 @@ import Structures.*;
 
 import java.util.Arrays;
 
-public class Wireworld {
+public class WireworldTest {
         public static void main(String[] args) {
             Structure_list g = new Structure_list();
             Dioda s1 = new Dioda(0,3, "Normal");
