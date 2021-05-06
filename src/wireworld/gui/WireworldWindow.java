@@ -15,9 +15,15 @@ public abstract class WireworldWindow {
     private JFormattedTextField NumberField;
     private JLabel numberIterText;
     private JLabel infoText;
+    private JFrame frame;
 
-    public WireworldWindow() {
-
+    public WireworldWindow(JFrame oldframe) {
+        this.frame = oldframe;
+        frame.setContentPane(getRootPanel());
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //frame.setPreferredSize(new Dimension(1100, 700));
+        frame.pack();
+        frame.setVisible(true);
         pathButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -37,11 +43,15 @@ public abstract class WireworldWindow {
                     public void run() {
                         SecondWindow myWindow = new SecondWindow();
                         JFrame newFrame = new JFrame("Automat");
+                        myWindow.setFrame(newFrame);
                         newFrame.setContentPane(myWindow.getSecondPanel());
                         newFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                         newFrame.setPreferredSize(new Dimension(800, 600));
                         newFrame.pack();
                         newFrame.setVisible(true);
+                        frame.dispose();
+
+
                     }
                 });
             }
