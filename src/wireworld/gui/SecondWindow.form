@@ -64,9 +64,13 @@
           <background color="-41984"/>
           <enabled value="true"/>
           <font name=".AppleSystemUIFontMonospaced" size="18"/>
-          <foreground color="-41984"/>
+          <foreground color="-16449020"/>
+          <hideActionText value="false"/>
           <text value="Stop"/>
         </properties>
+        <clientProperties>
+          <html.disable class="java.lang.Boolean" value="false"/>
+        </clientProperties>
       </component>
     </children>
   </grid>
