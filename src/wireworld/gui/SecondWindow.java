@@ -16,15 +16,6 @@ public class SecondWindow extends JButton {
 
     public SecondWindow() {
 
-//        goBackButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                WireworldWindow window = new WireworldWindow();
-//                JFrame.getFrames();
-//                newFrame.setVisible(false);
-//                window.getFrameInstance().setVisible(true);
-//            }
-//       });
         goBackButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
