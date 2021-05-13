@@ -1,10 +1,10 @@
 package Structures;
 
-public class Dioda extends Structure{
+public class Diode extends Structure{
 
     private final String type;
 
-    public Dioda(int startCol, int startRow, String type) {
+    public Diode(int startCol, int startRow, String type) {
         super(startCol, startRow);
         this.type = type;
     }
@@ -32,6 +32,11 @@ public class Dioda extends Structure{
             board[startRow][startCol+i] = 1;
 
 
+
+    }
+    @Override
+    public String toString(){
+        return this.getClass().getSimpleName()+": "+startCol+", "+startRow+", "+type;
 
     }
 }
