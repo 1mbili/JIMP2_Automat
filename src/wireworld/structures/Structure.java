@@ -15,6 +15,11 @@ public class Structure {
 
     public void addstruct(int [][] board) {}
 
+    @Override
+    public String toString() {
+        return this.getClass().getName()+": "+startCol+", "+startRow;
+
+    }
 
 
 }

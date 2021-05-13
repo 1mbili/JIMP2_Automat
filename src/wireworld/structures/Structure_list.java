@@ -5,11 +5,13 @@ import java.util.Iterator;
 
 public class Structure_list  implements Iterable<Structure> {
 
-    private ArrayList<Structure> struktury;
+    private final ArrayList<Structure> struktury;
 
     public Structure_list(){ struktury = new ArrayList<Structure>(); }
 
     public void add(Structure s) {struktury.add(s);}
+
+    public int size() { return struktury.size(); }
 
 
     @Override
