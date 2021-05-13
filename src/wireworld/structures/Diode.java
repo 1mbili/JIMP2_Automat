@@ -1,6 +1,5 @@
 package wireworld.structures;
 
-import Structures.Structure;
 
 public class Diode extends Structure {
 
