@@ -19,9 +19,12 @@ public class WireworldTest {
             g.add(s1);
             XOR s3 = new XOR(2,2);
             AND sA = new AND(2,2);
-            NAND s4 = new NAND(2,2);
+            NAND s4 = new NAND(2,4);
 
-            board  = new int[30][30];
+            board  = new int[16][30];
+            System.out.println(board.length);
+            board[7][5] = 3;
+            board[0][1] = 2;
             //board = s1.addstruct(board);
             //s.addstruct(board);
             s4.addstruct(board);
@@ -29,6 +32,7 @@ public class WireworldTest {
             try {
                 wireworld.structures.Structure_list s = Utils.readFile(Paths.get("").toAbsolutePath().toString()+"\\Test\\TestData");
                 System.out.println(s.size());
+                Utils.writeState(s,board);
                 Utils.writeFile(s,"toDownload\\test2");
             } catch ( IOException e) {
             }
@@ -39,6 +43,7 @@ public class WireworldTest {
             int maxCol = board[maxRow].length - 1;
             System.out.println("Matrix: " + maxRow);
             System.out.println("Matrix: " + maxCol);
+            Utils.writeState(g,board);
         }
     public static int[][] getBoard() {
         return board;

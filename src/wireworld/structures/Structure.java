@@ -17,7 +17,7 @@ public class Structure {
 
     @Override
     public String toString() {
-        return this.getClass().getName()+": "+startCol+", "+startRow;
+        return this.getClass().getSimpleName()+": "+startCol+", "+startRow;
 
     }
 
