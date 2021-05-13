@@ -1,8 +1,12 @@
-import Structures.*;
+package wireworld;
+
+import wireworld.structures.*;
 
 import java.util.Arrays;
 
 public class WireworldTest {
+    private static int[][] board;
+
         public static void main(String[] args) {
             Structure_list g = new Structure_list();
             Dioda s1 = new Dioda(0,3, "Normal");
@@ -16,10 +20,18 @@ public class WireworldTest {
             for( Structure st : g)
                 System.out.println(st + " iteruje sie");
 
-            int [] [] board  = new int[30][30];
+            board  = new int[30][30];
             //board = s1.addstruct(board);
             //s.addstruct(board);
             s4.addstruct(board);
             System.out.println(Arrays.deepToString(board).replace("], ", "],\n"));
+
+            int maxRow = board.length - 1;
+            int maxCol = board[maxRow].length - 1;
+            System.out.println("Matrix: " + maxRow);
+            System.out.println("Matrix: " + maxCol);
         }
+    public static int[][] getBoard() {
+        return board;
+    };
 }

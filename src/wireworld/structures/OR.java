@@ -1,4 +1,4 @@
-package Structures;
+package wireworld.structures;
 
 public class OR extends Structure {
     public OR(int startCol, int startRow) {

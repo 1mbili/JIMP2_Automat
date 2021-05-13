@@ -1,6 +1,5 @@
-package Structures;
+package wireworld.structures;
 
-import java.awt.image.AreaAveragingScaleFilter;
 import java.util.ArrayList;
 import java.util.Iterator;
 

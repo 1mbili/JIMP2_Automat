@@ -1,4 +1,4 @@
-package Structures;
+package wireworld.structures;
 
 public class XOR extends Structure {
     public XOR(int startCol, int startRow) {

@@ -1,4 +1,4 @@
-package Structures;
+package wireworld.structures;
 
 public class ElectronTail extends Structure{
     public ElectronTail(int startCol, int startRow) {

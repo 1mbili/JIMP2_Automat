@@ -1,4 +1,4 @@
-package Structures;
+package wireworld.structures;
 
 public class Dioda extends Structure{
 

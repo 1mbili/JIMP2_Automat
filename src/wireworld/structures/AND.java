@@ -1,4 +1,4 @@
-package Structures;
+package wireworld.structures;
 
 public class AND extends Structure {
     public AND(int startCol, int startRow) {

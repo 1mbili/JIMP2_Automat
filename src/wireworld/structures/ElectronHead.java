@@ -1,4 +1,4 @@
-package Structures;
+package wireworld.structures;
 
 public class ElectronHead extends Structure{
     public ElectronHead(int startCol, int startRow) {
