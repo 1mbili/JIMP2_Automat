@@ -1,10 +1,8 @@
 package wireworld;
 
+import wireworld.Automat.Automat;
 import wireworld.structures.*;
-import wireworld.Utils.*;
 
-import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.Arrays;
 
 public class WireworldTest {
@@ -29,21 +27,29 @@ public class WireworldTest {
             //s.addstruct(board);
             s4.addstruct(board);
             //System.out.println(Arrays.deepToString(board).replace("], ", "],\n"));
-            try {
-                wireworld.structures.Structure_list s = Utils.readFile(Paths.get("").toAbsolutePath().toString()+"\\Test\\TestData");
-                System.out.println(s.size());
-                Utils.writeState(s,board);
-                Utils.writeFile(s,"toDownload\\test2");
-            } catch ( IOException e) {
-            }
+//            try {
+//                wireworld.structures.Structure_list s = Utils.readFile(Paths.get("").toAbsolutePath().toString()+"\\Test\\TestData");
+//                System.out.println(s.size());
+//                Utils.writeState(s,board);
+//                Utils.writeFile(s,"toDownload\\test2");
+//            } catch ( IOException e) {
+//            }
 
             System.out.println(Arrays.deepToString(board).replace("], ", "],\n"));
 
+            Automat automat = new Automat(board);
+            for (int i = 0; i < 4; i++) {
+                System.out.println("\n");
+                System.out.println(Arrays.deepToString(board).replace("], ", "],\n"));
+                board = automat.getActualBoard();
+            }
             int maxRow = board.length - 1;
             int maxCol = board[maxRow].length - 1;
             System.out.println("Matrix: " + maxRow);
             System.out.println("Matrix: " + maxCol);
-            Utils.writeState(g,board);
+//            Utils.writeState(g,board);
+
+
         }
     public static int[][] getBoard() {
         return board;
