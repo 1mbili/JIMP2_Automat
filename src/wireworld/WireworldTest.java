@@ -20,7 +20,10 @@ public class WireworldTest {
             NAND s4 = new NAND(2,4);
 
             board  = new int[16][30];
-            System.out.println(board.length);
+            int maxRow = board.length;
+            int maxCol = board[maxRow - 1].length;
+            System.out.println(maxRow);
+            System.out.println(maxCol);
             board[7][5] = 3;
             board[0][1] = 2;
             //board = s1.addstruct(board);
@@ -35,18 +38,15 @@ public class WireworldTest {
 //            } catch ( IOException e) {
 //            }
 
-            System.out.println(Arrays.deepToString(board).replace("], ", "],\n"));
+            //System.out.println(Arrays.deepToString(board).replace("], ", "],\n"));
 
             Automat automat = new Automat(board);
             for (int i = 0; i < 4; i++) {
                 System.out.println("\n");
+                automat.copy_Matrix(automat.getActualBoard(), board);
                 System.out.println(Arrays.deepToString(board).replace("], ", "],\n"));
-                board = automat.getActualBoard();
+                automat.updateMatrix();
             }
-            int maxRow = board.length - 1;
-            int maxCol = board[maxRow].length - 1;
-            System.out.println("Matrix: " + maxRow);
-            System.out.println("Matrix: " + maxCol);
 //            Utils.writeState(g,board);
 
 
