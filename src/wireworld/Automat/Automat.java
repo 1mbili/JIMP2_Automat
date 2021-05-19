@@ -35,17 +35,19 @@ public class Automat {
         int maxCol = board[maxRow - 1].length;
         System.out.println(maxRow);
         System.out.println(maxCol);
-        board[7][5] = 3;
-        board[0][1] = 2;
-        s4.addstruct(board);
+        s1.addstruct(board);
+        board[3][1] = 2;
+        board[3][0] = 3;
+
         System.out.println(Arrays.deepToString(board).replace("], ", "],\n"));
 
         Automat automat = new Automat(board);
-        System.out.println("\n");
 
-        automat.copy_Matrix(automat.updateMatrix(), board);
-//        automat.copy_Matrix(automat.getActualBoard(), board);
-        System.out.println(Arrays.deepToString(board).replace("], ", "],\n"));
+        for( int i = 0; i < 15; i++) {
+            System.out.println("\n");
+            automat.copy_Matrix(automat.updateMatrix(), board);
+            System.out.println(Arrays.deepToString(board).replace("], ", "],\n"));
+        }
     }
 
     public Automat( int[][] thisBoard) {
@@ -53,7 +55,6 @@ public class Automat {
         maxRow = thisBoard.length;
         maxCol = thisBoard[maxRow - 1].length;
         actualBoard = new int[maxRow][maxCol];
-        //this.actualBoard = thisBoard;
         copy_Matrix(thisBoard, actualBoard);
     }
 
@@ -86,17 +87,22 @@ public class Automat {
                     switch (data) {
                         case 0:
                             nextIterationBoard[i][j] = 0;
+                            break;
                         case 1:
                             if (sumHeard == 1 || sumHeard == 2)
                                 nextIterationBoard[i][j] = 2;  // staje się głową elektronu
                             else if (sumHeard == 0 || sumHeard == 3)
                                 nextIterationBoard[i][j] = 1;  // staje się przewodnikiem
+                            break;
                         case 2:
                             nextIterationBoard[i][j] = 3;
+                            break;
                         case 3:
                             nextIterationBoard[i][j] = 1;
+                            break;
                         default:
                             nextIterationBoard[i][j] = 0;
+                            break;
                     }
                 }
             copy_Matrix(nextIterationBoard, actualBoard);
