@@ -45,7 +45,7 @@ public class Utils {
                 return null;
             }
 
-            public static void writeState(Structure_list slist ,int [][] board){
+            private static void writeState(Structure_list slist ,int [][] board){
                 int rownum = board.length;
                 int colnum = board[0].length;
                 for(int i = 0; i < rownum ; i++) {
@@ -60,7 +60,8 @@ public class Utils {
             }
 
 
-            public static void writeFile(Structure_list slist, String filepath) throws IOException {
+            public static void writeFile(Structure_list slist, String filepath, int [][] board) throws IOException {
+                writeState(slist,board);
                 FileWriter writer = new FileWriter(filepath);
                 for (Structure st: slist) {
                     writer.write(st+ "\n");
