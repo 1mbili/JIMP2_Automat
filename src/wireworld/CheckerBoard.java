@@ -30,13 +30,13 @@ public class CheckerBoard extends JPanel {
     public Color getColor(int data) {
         switch(data) {
             case 0:
-                return Color.WHITE;
+                return Color.BLACK;
             case 1:
                 return Color.YELLOW;
             case 2:
-                return Color.RED;
-            case 3:
                 return Color.BLUE;
+            case 3:
+                return Color.RED;
             default:
                 break;
         }

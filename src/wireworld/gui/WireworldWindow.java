@@ -17,11 +17,14 @@ public abstract class WireworldWindow {
     private JButton startButton;
     private JLabel nameText;
     private JLabel pathText;
-    private JFormattedTextField numberField;
     private JLabel numberIterText;
     private JLabel infoText;
+    private JTextField numberField;
     private JFrame frame;
     private File selected;
+
+    private String direction;
+    private int intValue;
 
 
     public WireworldWindow(JFrame oldframe) {
@@ -44,6 +47,8 @@ public abstract class WireworldWindow {
                 }
             }
         });
+
+
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -80,13 +85,21 @@ public abstract class WireworldWindow {
                 }
             }
         });
+        numberField = new JTextField(20);
+        numberField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                direction = numberField.getText();
+                intValue = Integer.parseInt(direction);
+            }
+        });
     }
-
     public WireworldWindow() {
     }
 
-    public JFormattedTextField getNumberField() {
-        return this.numberField;
+
+    public int getNumberField() {
+        return intValue;
     }
 
     public boolean isFileEmpty() {
