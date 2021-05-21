@@ -4,10 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import java.io.File;
-import java.util.Scanner;
 
 import static wireworld.gui.ErrorWindow.isInteger;
 
@@ -17,12 +14,20 @@ public abstract class WireworldWindow {
     private JButton startButton;
     private JLabel nameText;
     private JLabel pathText;
-    private JFormattedTextField numberField;
     private JLabel numberIterText;
     private JLabel infoText;
+    private JTextField numberField;
     private JFrame frame;
     private File selected;
 
+    private String direction;
+    private int intValue;
+
+    public int getIntValue() {
+        System.out.println("kkk"+intValue);
+
+        return intValue;
+    }
 
     public WireworldWindow(JFrame oldframe) {
         this.frame = oldframe;
@@ -44,12 +49,22 @@ public abstract class WireworldWindow {
                 }
             }
         });
+        numberField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                direction = numberField.getText();
+                intValue = Integer.parseInt(direction);
+                WireworldWindow.this.getit(intValue);
+            }
+        });
+
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if ( isFileEmpty() == true || isInteger(numberField.getText()) == false) { // sprawdza czy są wprowadzone dane, jeśli nie, to tworzy nowe okno
                     javax.swing.SwingUtilities.invokeLater(new Runnable() {
                         public void run() {
+                            System.out.println(numberField.getText());
                             JFrame frameErr = new JFrame("Error");
                             frameErr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                             frameErr.setPreferredSize(new Dimension(350, 300));
@@ -81,13 +96,9 @@ public abstract class WireworldWindow {
             }
         });
     }
-
     public WireworldWindow() {
     }
 
-    public JFormattedTextField getNumberField() {
-        return this.numberField;
-    }
 
     public boolean isFileEmpty() {
         return selected == null;
@@ -100,4 +111,7 @@ public abstract class WireworldWindow {
     }
 
     public abstract void onOpen(String path);
+
+    public abstract void getit(int itnr);
+
 }

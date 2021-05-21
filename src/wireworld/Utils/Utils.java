@@ -36,7 +36,7 @@ public class Utils {
                         return c.getDeclaredConstructor(int.class,int.class).newInstance(Integer.parseInt(w[1]),Integer.parseInt(w[2]));
                     }
                 } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
-                    System.err.println(w[0] + " Brak takiej lub metody");
+                    System.err.println(e+w[0] + " Brak takiej klasy lub metody");
                 } catch (NumberFormatException e) {
                     System.err.println("W lini: " + lineorg + " sa smieci");
                 }

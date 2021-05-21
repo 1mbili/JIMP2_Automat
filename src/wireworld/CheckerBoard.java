@@ -19,7 +19,7 @@ public class CheckerBoard extends JPanel {
                     JPanel b = new JPanel();
                     b.setPreferredSize(dims);
                     b.setMinimumSize(dims);
-                    b.setBorder(new LineBorder(Color.BLACK));
+                    b.setBorder(new LineBorder(Color.WHITE));
                     b.setBackground(getColor(matrixBoard[i][j]));
                     add(b);
                     colorboard[i][j] = b;
@@ -30,13 +30,13 @@ public class CheckerBoard extends JPanel {
     public Color getColor(int data) {
         switch(data) {
             case 0:
-                return Color.WHITE;
+                return Color.BLACK;
             case 1:
                 return Color.YELLOW;
             case 2:
-                return Color.RED;
-            case 3:
                 return Color.BLUE;
+            case 3:
+                return Color.RED;
             default:
                 break;
         }

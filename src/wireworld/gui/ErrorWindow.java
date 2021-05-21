@@ -6,10 +6,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ErrorWindow extends WireworldWindow {
-    private JButton okButton;
-    private JLabel errorLabel;
-    private JFrame frame;
-    private JPanel panel;
+    private final JButton okButton;
+    private final JLabel errorLabel;
+    private final JFrame frame;
+    private final JPanel panel;
 
 
     public ErrorWindow(JFrame oldframe) {
@@ -50,6 +50,11 @@ public class ErrorWindow extends WireworldWindow {
                     @Override
                     public void onOpen(String path) {
                     }
+
+                    @Override
+                    public void getit(int itnr) {
+
+                    }
                 };
                 frame.dispose();
             }
@@ -77,6 +82,10 @@ public class ErrorWindow extends WireworldWindow {
 
     @Override
     public void onOpen(String path) {
+    }
+
+    @Override
+    public void getit(int itnr) {
     }
 }
 

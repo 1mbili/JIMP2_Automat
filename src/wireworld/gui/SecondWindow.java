@@ -36,6 +36,11 @@ public class SecondWindow {
                     @Override
                     public void onOpen(String path) {
                     }
+
+                    @Override
+                    public void getit(int itnr) {
+
+                    }
                 };
                 actual.dispose();
             }
