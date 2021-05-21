@@ -6,6 +6,7 @@ import wireworld.structures.*;
 
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
 
 public class Utils {
 
@@ -22,19 +23,17 @@ public class Utils {
 
 
 
-
-
             private static Structure readStructure(String lineorg) {
                 String line = lineorg.replaceAll(":|,", "");
                 String[] w = line.split(" ");
                 w[0] = "wireworld.structures."+w[0];
                 try {
-                    Class c = Class.forName(w[0]);
+                    Class<Structure> c = (Class<Structure>) Class.forName(w[0]);
                     if (c.getName().equals("wireworld.structures.Diode") && w.length == 4  ) {
-                        return (Structure) c.getDeclaredConstructor(int.class,int.class,String.class).newInstance(Integer.parseInt(w[1]),Integer.parseInt(w[2]),w[3]);
+                        return c.getDeclaredConstructor(int.class,int.class,String.class).newInstance(Integer.parseInt(w[1]),Integer.parseInt(w[2]),w[3]);
                     }
                     if (c.getName().matches("wireworld\\.structures\\.(AND|OR|XOR|NAND|ElectronHead|ElectronTail)") && w.length == 3) {
-                        return (Structure) c.getDeclaredConstructor(int.class,int.class).newInstance(Integer.parseInt(w[1]),Integer.parseInt(w[2]));
+                        return c.getDeclaredConstructor(int.class,int.class).newInstance(Integer.parseInt(w[1]),Integer.parseInt(w[2]));
                     }
                 } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
                     System.err.println(w[0] + " Brak takiej lub metody");
@@ -44,6 +43,24 @@ public class Utils {
 
                 return null;
             }
+            public static int [] [] writeBoard(Structure_list slist, int [] []board){
+                // Nie można usuwać podczas iteracji, kod do porawy niezbyt elegancko to wygląda.
+                int []mem = new int[slist.size()]; //usuwam electronhead i tail po indeksie
+                int c = 0;
+                int n = 0;
+                for(Structure st: slist) {
+                    st.addstruct(board);
+                    if (st instanceof ElectronHead || st instanceof ElectronTail) {
+                        mem[n++] = c;
+                        c--;
+                    }
+                    c++;
+                }
+                for (int i: mem)
+                    if (i != 0)
+                        slist.remove(i);
+                return board;
+                }
 
             private static void writeState(Structure_list slist ,int [][] board){
                 int rownum = board.length;

@@ -2,13 +2,15 @@ package wireworld.gui;
 
 
 import wireworld.*;
+import wireworld.Utils.Utils;
+import wireworld.structures.Structure_list;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
+import java.io.IOException;
+import java.util.Arrays;
 
 
 public class SecondWindow {
@@ -20,6 +22,7 @@ public class SecondWindow {
     private JPanel board;
     private JFrame actual;
     private JFrame frame;
+    private int [][] sboard;
 
     public SecondWindow() {
 
@@ -37,9 +40,13 @@ public class SecondWindow {
                 actual.dispose();
             }
         });
-    };
-    private void createUIComponents () {
-        this.board = new CheckerBoard();
+    }
+
+    private void createUIComponents () throws IOException {
+        Structure_list g = Utils.readFile("Test/TestData");
+        sboard = Utils.writeBoard(g,new int[32][32]);
+        System.out.println(Arrays.deepToString(sboard).replace("], ", "],\n"));
+        board = new CheckerBoard(sboard);
     }
     public JPanel getSecondPanel() {
         return this.secondPanel;

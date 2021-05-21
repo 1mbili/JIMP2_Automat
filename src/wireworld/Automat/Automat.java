@@ -14,10 +14,10 @@ import java.util.Arrays;
 */
 
 public class Automat {
-    private int [][] actualBoard;
+    private final int [][] actualBoard;
     private int [][] nextIterationBoard;
-    private int maxRow;
-    private int maxCol;
+    private final int maxRow;
+    private final int maxCol;
 
     public static void main(String[] args) {
         Structure_list g = new Structure_list();
@@ -30,7 +30,7 @@ public class Automat {
         AND sA = new AND(2,2);
         NAND s4 = new NAND(2,4);
 
-        int[][] board  = new int[16][30];
+        int[][] board  = new int[32][32];
         int maxRow = board.length;
         int maxCol = board[maxRow - 1].length;
         System.out.println(maxRow);
@@ -58,7 +58,7 @@ public class Automat {
         copy_Matrix(thisBoard, actualBoard);
     }
 
-        public void copy_Matrix (int first[][], int second[][]) {
+        public void copy_Matrix (int[][] first, int[][] second) {
             for ( int i = 0 ; i < maxRow; ++i)
                 System.arraycopy(first[i], 0, second[i], 0, first[i].length );
         }

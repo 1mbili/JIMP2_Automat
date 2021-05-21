@@ -13,6 +13,8 @@ public class Structure_list  implements Iterable<Structure> {
 
     public int size() { return struktury.size(); }
 
+    public void remove(int n){struktury.remove(n);}
+
 
     @Override
     public Iterator<Structure> iterator() {

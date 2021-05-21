@@ -1,12 +1,12 @@
 package wireworld.structures;
 
 public class ElectronTail extends Structure{
-    public ElectronTail(int startCol, int startRow) {
-        super(startCol, startRow);
+    public ElectronTail(int startRow, int startCol) {
+        super(startRow, startCol);
     }
 
     @Override
     public void addstruct(int [][] board)  {
-        board[startCol][startRow] = 3;
+        board[startRow][startCol] = 3;
     }
 }
