@@ -13,6 +13,7 @@ public class Main {
     private static int numberIteration;
     private static WireworldWindow window;
     private static String a;
+    private static  boolean isdiasposed;
 
     public static void main(String[] args) throws InterruptedException {
         Structure_list g = new Structure_list();
@@ -49,11 +50,18 @@ public class Main {
                     public void getit(int itnr) {
                         numberIteration = itnr;
                     }
+
+                    @Override
+                    public void getisclosed(boolean closed) {
+                        isdiasposed = closed;
+                    }
+
                 };
 
             }
         });
-        TimeUnit.SECONDS.sleep(15);
+        TimeUnit.SECONDS.sleep(13);
+        System.out.println(isdiasposed == true);
         System.out.println(a);
         System.out.println("Number: " + numberIteration);
         for( int i = 0; i < numberIteration; i++) {

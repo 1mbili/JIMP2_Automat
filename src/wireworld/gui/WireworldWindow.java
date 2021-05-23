@@ -1,10 +1,15 @@
 package wireworld.gui;
 
+import wireworld.Utils.Utils;
+import wireworld.structures.Structure_list;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import javax.swing.Timer;
+
 
 import static wireworld.gui.ErrorWindow.isInteger;
 
@@ -22,12 +27,8 @@ public abstract class WireworldWindow {
 
     private String direction;
     private int intValue;
+    private boolean isClosed;
 
-    public int getIntValue() {
-        System.out.println("kkk"+intValue);
-
-        return intValue;
-    }
 
     public WireworldWindow(JFrame oldframe) {
         this.frame = oldframe;
@@ -81,7 +82,8 @@ public abstract class WireworldWindow {
                 } else {
                     javax.swing.SwingUtilities.invokeLater(new Runnable() {
                         public void run() {
-                            SecondWindow myWindow = new SecondWindow();
+
+                            SecondWindow myWindow = new SecondWindow(intValue);
                             JFrame newFrame = new JFrame("Automat");
                             myWindow.setFrame(newFrame);
                             newFrame.setContentPane(myWindow.getSecondPanel());
@@ -90,6 +92,7 @@ public abstract class WireworldWindow {
                             newFrame.pack();
                             newFrame.setVisible(true);
                             frame.dispose();
+                            WireworldWindow.this.getisclosed(true);
                         }
                     });
                 }
@@ -100,9 +103,11 @@ public abstract class WireworldWindow {
     }
 
 
+
     public boolean isFileEmpty() {
         return selected == null;
     }
+
     private void createUIComponents() {
         // TODO: place custom component creation code here
     }
@@ -110,8 +115,10 @@ public abstract class WireworldWindow {
         return this.rootPanel;
     }
 
+
     public abstract void onOpen(String path);
 
     public abstract void getit(int itnr);
 
+    public abstract void getisclosed(boolean closed);
 }

@@ -55,6 +55,11 @@ public class ErrorWindow extends WireworldWindow {
                     public void getit(int itnr) {
 
                     }
+
+                    @Override
+                    public void getisclosed(boolean closed) {
+
+                    }
                 };
                 frame.dispose();
             }
@@ -86,6 +91,11 @@ public class ErrorWindow extends WireworldWindow {
 
     @Override
     public void getit(int itnr) {
+    }
+
+    @Override
+    public void getisclosed(boolean closed) {
+
     }
 }
 

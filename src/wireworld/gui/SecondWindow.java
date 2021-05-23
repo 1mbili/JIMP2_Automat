@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.concurrent.TimeUnit;
 
 
 public class SecondWindow {
@@ -23,9 +24,20 @@ public class SecondWindow {
     private JFrame actual;
     private JFrame frame;
     private int [][] sboard;
+    private final String path;
+    private int niter;
 
     public SecondWindow() {
-
+        super();
+        this.path = "Test/TestData";
+    }
+    public SecondWindow(int niter) {
+        super();
+        this.path = "Test/TestData";
+        this.niter = niter;
+    }
+    public SecondWindow(String path) {
+        this.path = path;
         board.setBackground(Color.black);
         board.setPreferredSize(new Dimension(350, 350));
         goBackButton.addActionListener(new ActionListener() {
@@ -41,17 +53,23 @@ public class SecondWindow {
                     public void getit(int itnr) {
 
                     }
+
+                    @Override
+                    public void getisclosed(boolean closed) {
+
+                    }
                 };
                 actual.dispose();
             }
         });
     }
 
-    private void createUIComponents () throws IOException {
-        Structure_list g = Utils.readFile("Test/TestData");
+    private void createUIComponents () throws IOException, InterruptedException {
+        System.out.println(path);
+        Structure_list g = Utils.readFile(path);
         sboard = Utils.writeBoard(g,new int[32][32]);
         System.out.println(Arrays.deepToString(sboard).replace("], ", "],\n"));
-        board = new CheckerBoard(sboard);
+        board = new CheckerBoard(sboard,niter);
     }
     public JPanel getSecondPanel() {
         return this.secondPanel;
@@ -62,5 +80,6 @@ public class SecondWindow {
     public JFrame getFrameInstance () {
         return this.frame;
     }
+
 }
 
