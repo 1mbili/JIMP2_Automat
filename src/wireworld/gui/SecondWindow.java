@@ -11,7 +11,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.concurrent.TimeUnit;
 
 
 public class SecondWindow {
@@ -31,19 +30,17 @@ public class SecondWindow {
         super();
         this.path = "Test/TestData";
     }
+
     public SecondWindow(int niter) {
-        super();
         this.path = "Test/TestData";
         this.niter = niter;
-    }
-    public SecondWindow(String path) {
-        this.path = path;
         board.setBackground(Color.black);
         board.setPreferredSize(new Dimension(350, 350));
         goBackButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame = new JFrame("Wireworld GUI");
+
                 WireworldWindow window = new WireworldWindow(frame) {
                     @Override
                     public void onOpen(String path) {

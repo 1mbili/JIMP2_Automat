@@ -64,10 +64,6 @@ public class Main {
         System.out.println(isdiasposed == true);
         System.out.println(a);
         System.out.println("Number: " + numberIteration);
-        for( int i = 0; i < numberIteration; i++) {
-            System.out.println("\n");
-            automat.copy_Matrix(automat.updateMatrix(), board);
-            System.out.println(Arrays.deepToString(board).replace("], ", "],\n"));
-        }
+
     }
 }
