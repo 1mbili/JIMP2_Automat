@@ -60,7 +60,7 @@ public class CheckerBoard extends JPanel  {
                     System.err.println("Timer skończył");
                     timer.stop();
                 }
-        }});
+            }});
         timer.start();
     }
     public Timer getTimer() {
