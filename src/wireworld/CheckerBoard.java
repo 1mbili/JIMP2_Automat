@@ -12,7 +12,7 @@ import javax.swing.border.LineBorder;
 
 import static javax.swing.UIManager.getColor;
 
-public class CheckerBoard extends JPanel  {
+public class CheckerBoard extends JPanel{
 
     private int[][] matrixBoard;
     private final JPanel[][] colorboard = new JPanel[32][32];
@@ -21,12 +21,17 @@ public class CheckerBoard extends JPanel  {
     private int niter;
     private final int rowLength = 32;
     private final int colLength = 32;
-    private boolean isInterrupted;
+
+    public void setInterrupted(boolean interrupted) {
+        isInterrupted = interrupted;
+    }
+
+    private volatile boolean isInterrupted;
 
     public CheckerBoard() {
     }
 
-    public CheckerBoard(int [][] matrixBoard, int niter, boolean isInterrupted) {
+    public CheckerBoard(int [][] matrixBoard, int niter) throws InterruptedException {
         this.niter = niter;
         Dimension dims = new Dimension(600 / 32, 612 / 32);
         setLayout(new GridLayout(rowLength, colLength));
@@ -48,17 +53,25 @@ public class CheckerBoard extends JPanel  {
         timer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (isInterrupted == false){
                 automat.copy_Matrix(automat.updateMatrix(), matrixBoard);
                 for (int i = 0; i < rowLength; i++) {
                     for (int j = 0; j < colLength; j++) {
                         colorboard[i][j].setBackground(getColor(matrixBoard[i][j]));
                         }
                 }
-                System.out.println("is " + isInterrupted);
                 c++;
                 if (c == niter) {
                     System.err.println("Timer skończył");
                     timer.stop();
+                }
+            }
+                else{
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException interruptedException) {
+                        interruptedException.printStackTrace();
+                    }
                 }
             }});
         timer.start();

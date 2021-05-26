@@ -25,7 +25,6 @@ public class SecondWindow {
     private int [][] sboard;
     private String path;
     private int numberIter;
-    public volatile boolean isInterrupted = false;
     private CheckerBoard checkerBoard;
     //private Timer timer;
 
@@ -63,7 +62,8 @@ public class SecondWindow {
         Structure_list g = Utils.readFile(path);
         sboard = Utils.writeBoard(g, new int[32][32]);
         System.out.println(Arrays.deepToString(sboard).replace("], ", "],\n"));
-        board = new CheckerBoard(sboard, numberIter, isInterrupted);
+        checkerBoard = new CheckerBoard(sboard, numberIter);
+        board = checkerBoard;
     }
     public void setDownloadButton () {
         downloadButton.addActionListener(new ActionListener() {
@@ -77,8 +77,7 @@ public class SecondWindow {
         stopButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                isInterrupted = true;
-                System.out.println("Przycisk stop");
+                checkerBoard.setInterrupted(true);
 
             }
         });
@@ -88,8 +87,7 @@ public class SecondWindow {
         nextStepButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                isInterrupted = false;
-                System.out.println("Przycisk step");
+                checkerBoard.setInterrupted(false);
             }
         });
     }
@@ -120,10 +118,6 @@ public class SecondWindow {
 
     public void setFrame(JFrame fr) {
         this.actual = fr;
-    }
-
-    public boolean getIsInterrupted() {
-        return this.isInterrupted;
     }
 
     public JFrame getFrameInstance () {
