@@ -14,6 +14,10 @@ import static javax.swing.UIManager.getColor;
 
 public class CheckerBoard extends JPanel{
 
+    public int[][] getMatrixBoard() {
+        return matrixBoard;
+    }
+
     private int[][] matrixBoard;
     private final JPanel[][] colorboard = new JPanel[32][32];
     private int c = 0;
@@ -33,6 +37,7 @@ public class CheckerBoard extends JPanel{
 
     public CheckerBoard(int [][] matrixBoard, int niter) throws InterruptedException {
         this.niter = niter;
+        this.matrixBoard = matrixBoard;
         Dimension dims = new Dimension(600 / 32, 612 / 32);
         setLayout(new GridLayout(rowLength, colLength));
         setBorder(BorderFactory.createLineBorder(Color.BLACK));

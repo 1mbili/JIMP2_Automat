@@ -26,6 +26,7 @@ public class SecondWindow {
     private String path;
     private int numberIter;
     private CheckerBoard checkerBoard;
+    private Structure_list g;
     //private Timer timer;
 
     public SecondWindow() {
@@ -59,17 +60,22 @@ public class SecondWindow {
 
     private void createUIComponents () throws IOException, InterruptedException {
         System.out.println(path);
-        Structure_list g = Utils.readFile(path);
+        g = Utils.readFile(path);
         sboard = Utils.writeBoard(g, new int[32][32]);
         System.out.println(Arrays.deepToString(sboard).replace("], ", "],\n"));
         checkerBoard = new CheckerBoard(sboard, numberIter);
         board = checkerBoard;
     }
+
     public void setDownloadButton () {
         downloadButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                try {
+                    Utils.writeFile(g, "Test/TestOutput", checkerBoard.getMatrixBoard());
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
             }
         });
     }
