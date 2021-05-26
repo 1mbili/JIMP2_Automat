@@ -6,12 +6,10 @@ import wireworld.Utils.Utils;
 import wireworld.structures.Structure_list;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.concurrent.TimeUnit;
 
 
 public class SecondWindow {
@@ -23,23 +21,80 @@ public class SecondWindow {
     private JPanel board;
     private JFrame actual;
     private JFrame frame;
+
     private int [][] sboard;
-    private final String path;
-    private int niter;
+    private String path;
+    private int numberIter;
+    public volatile boolean isInterrupted = false;
+    private CheckerBoard checkerBoard;
+    //private Timer timer;
 
     public SecondWindow() {
-        super();
-        this.path = "Test/TestData";
+        setGoBackButton();
+        setStopButton();
+        setNextStepButton();
+        setDownloadButton();
     }
-    public SecondWindow(int niter) {
+
+    // w przypadku lokalnych danych
+    public SecondWindow(int numberIter) {
         super();
+        this.numberIter = numberIter;
         this.path = "Test/TestData";
-        this.niter = niter;
+        setGoBackButton();
+        setStopButton();
+        setNextStepButton();
+        setDownloadButton();
     }
-    public SecondWindow(String path) {
+
+    // w przypadku danych z pliku komputera
+    public SecondWindow(int numberIter, String path) {
+        super();
         this.path = path;
-        board.setBackground(Color.black);
-        board.setPreferredSize(new Dimension(350, 350));
+        this.numberIter = numberIter;
+        setGoBackButton();
+        setStopButton();
+        setNextStepButton();
+        setDownloadButton();
+    }
+
+    private void createUIComponents () throws IOException, InterruptedException {
+        System.out.println(path);
+        Structure_list g = Utils.readFile(path);
+        sboard = Utils.writeBoard(g, new int[32][32]);
+        System.out.println(Arrays.deepToString(sboard).replace("], ", "],\n"));
+        board = new CheckerBoard(sboard, numberIter, isInterrupted);
+    }
+    public void setDownloadButton () {
+        downloadButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+    }
+    public void setStopButton () {
+        stopButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                isInterrupted = true;
+                System.out.println("Przycisk stop");
+
+            }
+        });
+    }
+
+    public void setNextStepButton () {
+        nextStepButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                isInterrupted = false;
+                System.out.println("Przycisk step");
+            }
+        });
+    }
+
+    public void setGoBackButton () {
         goBackButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -50,33 +105,27 @@ public class SecondWindow {
                     }
 
                     @Override
-                    public void getit(int itnr) {
-
+                    public void getIt(int itnr) {
                     }
 
-                    @Override
-                    public void getisclosed(boolean closed) {
-
-                    }
                 };
                 actual.dispose();
             }
         });
     }
 
-    private void createUIComponents () throws IOException, InterruptedException {
-        System.out.println(path);
-        Structure_list g = Utils.readFile(path);
-        sboard = Utils.writeBoard(g,new int[32][32]);
-        System.out.println(Arrays.deepToString(sboard).replace("], ", "],\n"));
-        board = new CheckerBoard(sboard,niter);
-    }
     public JPanel getSecondPanel() {
         return this.secondPanel;
     }
+
     public void setFrame(JFrame fr) {
         this.actual = fr;
     }
+
+    public boolean getIsInterrupted() {
+        return this.isInterrupted;
+    }
+
     public JFrame getFrameInstance () {
         return this.frame;
     }

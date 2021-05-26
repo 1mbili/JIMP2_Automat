@@ -38,6 +38,7 @@ public abstract class WireworldWindow {
         frame.pack();
         frame.setVisible(true);
 
+
         pathButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -47,22 +48,27 @@ public abstract class WireworldWindow {
                     selected = chooser.getSelectedFile();
                     pathButton.setText("Opening " + selected.getAbsolutePath());
                     WireworldWindow.this.onOpen(selected.getAbsolutePath());
+                    File f = chooser.getSelectedFile();
+                    System.out.println(f.getPath());
+                    direction = f.getPath();
                 }
             }
         });
+
         numberField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                direction = numberField.getText();
-                intValue = Integer.parseInt(direction);
-                WireworldWindow.this.getit(intValue);
+                String text;
+                text = numberField.getText();
+                intValue = Integer.parseInt(text);
+                WireworldWindow.this.getIt(intValue);
             }
         });
 
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if ( isFileEmpty() == true || isInteger(numberField.getText()) == false) { // sprawdza czy są wprowadzone dane, jeśli nie, to tworzy nowe okno
+                if (isInteger(numberField.getText()) == false) { // sprawdza czy są wprowadzone dane, jeśli nie, to tworzy nowe okno
                     javax.swing.SwingUtilities.invokeLater(new Runnable() {
                         public void run() {
                             System.out.println(numberField.getText());
@@ -71,19 +77,19 @@ public abstract class WireworldWindow {
                             frameErr.setPreferredSize(new Dimension(350, 300));
                             frameErr.pack();
                             frameErr.setVisible(true);
-                            frame.dispose();
 
                             // tworzenie obiektu, żeby uruchomić okno
-                            ErrorWindow window = new ErrorWindow(frameErr) {
-
-                            };
+                            ErrorWindow window = new ErrorWindow(frameErr);
                         }
                     });
                 } else {
                     javax.swing.SwingUtilities.invokeLater(new Runnable() {
                         public void run() {
-
-                            SecondWindow myWindow = new SecondWindow(intValue);
+                            SecondWindow myWindow;
+                            if(isFileEmpty() == true)
+                                myWindow = new SecondWindow(intValue);
+                            else
+                                myWindow = new SecondWindow(intValue, direction);
                             JFrame newFrame = new JFrame("Automat");
                             myWindow.setFrame(newFrame);
                             newFrame.setContentPane(myWindow.getSecondPanel());
@@ -92,7 +98,6 @@ public abstract class WireworldWindow {
                             newFrame.pack();
                             newFrame.setVisible(true);
                             frame.dispose();
-                            WireworldWindow.this.getisclosed(true);
                         }
                     });
                 }
@@ -115,10 +120,12 @@ public abstract class WireworldWindow {
         return this.rootPanel;
     }
 
+    public String getFileText() {
+        return this.direction;
+    }
 
     public abstract void onOpen(String path);
 
-    public abstract void getit(int itnr);
+    public abstract void getIt(int itnr);
 
-    public abstract void getisclosed(boolean closed);
 }

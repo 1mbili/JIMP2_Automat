@@ -45,22 +45,6 @@ public class ErrorWindow extends WireworldWindow {
         okButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed ( ActionEvent e){
-                JFrame frame1 = new JFrame("Wireworld GUI");
-                WireworldWindow window = new WireworldWindow(frame1) {
-                    @Override
-                    public void onOpen(String path) {
-                    }
-
-                    @Override
-                    public void getit(int itnr) {
-
-                    }
-
-                    @Override
-                    public void getisclosed(boolean closed) {
-
-                    }
-                };
                 frame.dispose();
             }
         });
@@ -90,12 +74,8 @@ public class ErrorWindow extends WireworldWindow {
     }
 
     @Override
-    public void getit(int itnr) {
+    public void getIt(int itnr) {
     }
 
-    @Override
-    public void getisclosed(boolean closed) {
-
-    }
 }
 
