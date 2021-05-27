@@ -1,0 +1,34 @@
+Diode: 0, 3, Normal
+Diode: 0, 9, Reversed
+ElectronTail: 3, 3
+ElectronHead: 3, 4
+ElectronTail: 9, 3
+ElectronHead: 9, 4
+ElectronTail: 3, 3
+ElectronHead: 3, 4
+ElectronTail: 9, 3
+ElectronHead: 9, 4
+ElectronTail: 2, 6
+ElectronHead: 2, 7
+ElectronTail: 3, 6
+ElectronTail: 4, 6
+ElectronHead: 4, 7
+ElectronTail: 8, 6
+ElectronHead: 8, 7
+ElectronHead: 9, 7
+ElectronTail: 10, 6
+ElectronHead: 10, 7
+ElectronTail: 2, 6
+ElectronHead: 2, 7
+ElectronTail: 3, 6
+ElectronTail: 4, 6
+ElectronHead: 4, 7
+ElectronTail: 8, 6
+ElectronHead: 8, 7
+ElectronHead: 9, 7
+ElectronTail: 10, 6
+ElectronHead: 10, 7
+ElectronTail: 3, 10
+ElectronHead: 3, 11
+ElectronTail: 3, 10
+ElectronHead: 3, 11
