@@ -52,7 +52,7 @@ public class Utils {
         int n = 0;
         for (Structure st : slist) {
             st.addstruct(board);
-            if (st instanceof ElectronHead || st instanceof ElectronTail) {
+            if ((st instanceof ElectronHead || st instanceof ElectronTail)) {
                 mem[n++] = c;
                 c--;
             }
@@ -61,6 +61,17 @@ public class Utils {
         for (int i : mem)
             if (i != 0)
                 slist.remove(i);
+        return board;
+    }
+    public static int[][] writeBoard2(Structure_list slist, int[][] board) {
+        // Nie można usuwać podczas iteracji, kod do porawy niezbyt elegancko to wygląda.
+         Structure_list tmp = new Structure_list();
+        for (Structure st : slist) {
+            st.addstruct(board);
+            if (!(st instanceof ElectronHead || st instanceof ElectronTail)) {
+                tmp.add(st);
+            }
+        }
         return board;
     }
 

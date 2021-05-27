@@ -16,6 +16,8 @@ public class Structure_list  implements Iterable<Structure> {
     public void remove(int n){struktury.remove(n);}
 
 
+
+
     @Override
     public Iterator<Structure> iterator() {
         return struktury.iterator();

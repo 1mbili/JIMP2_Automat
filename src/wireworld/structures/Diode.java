@@ -4,6 +4,9 @@ package wireworld.structures;
 public class Diode extends Structure {
 
     private final String type;
+    private int collen = 2;
+    private int rowlend = -1;
+    private int rowlenup = 1;
 
     public Diode(int startCol, int startRow, String type) {
         super(startCol, startRow);

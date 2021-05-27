@@ -1,6 +1,9 @@
 package wireworld.structures;
 
 public class AND extends Structure {
+    private int collen=14;
+    private int rowlend=0;
+    private int rowlenup = 7;
     public AND(int startCol, int startRow) {
         super(startCol, startRow);
     }
