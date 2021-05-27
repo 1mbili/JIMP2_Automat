@@ -1,4 +1,4 @@
-package Structures;
+package wireworld.structures;
 
 public class Structure {
 
@@ -6,6 +6,9 @@ public class Structure {
 
     protected int startCol;
     protected int startRow;
+    private int collen;
+    private int rowlend;
+    private int rowlenup;
 
 
     public Structure(int startCol, int startRow) {
@@ -17,7 +20,7 @@ public class Structure {
 
     @Override
     public String toString() {
-        return this.getClass().getName()+": "+startCol+", "+startRow;
+        return this.getClass().getSimpleName()+": "+startCol+", "+startRow;
 
     }
 

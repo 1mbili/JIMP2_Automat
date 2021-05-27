@@ -1,6 +1,9 @@
-package Structures;
+package wireworld.structures;
 
 public class NAND extends Structure{
+    private int collen = 20;
+    private int rowlend = -1;
+    private int rowlenup = 1;
 
     public NAND(int startCol, int startRow) {
         super(startCol, startRow);
@@ -8,14 +11,14 @@ public class NAND extends Structure{
 
     @Override
     public void addstruct(int[][] board) {
-        int lp =9;
+        int lp =8;
         for (int j=0; j < 11; j+=10)
             for (int i=0; i < lp; i++)
                 board[startRow+j][startCol+i] = 1;
         // staram się wykożystać symetryczność NAND
-
+        startCol-=1;
         for(int j = -1; j < 2; j+=2 ) {
-            board[startRow + 5][startCol + 4] = 1;
+            board[startRow + 5][startCol + 4] = 3;
             board[startRow + 5 + j][startCol + 5] = 1;
             board[startRow + 5 + j][startCol + 6] = 1;
             board[startRow + 5][startCol + 7] = 1;
@@ -35,6 +38,7 @@ public class NAND extends Structure{
             board[startRow + 5 + j][startCol + 15] = 1;
             board[startRow + 5 + 2*j][startCol + 15] = 1;
             board[startRow + 5 + j][startCol + 16] = 1;
+            board[startRow + 6][startCol + 5] = 2;
             for (int i = 17; i < 20; i++)
                 board[startRow+5][startCol+i] = 1;
 

@@ -1,6 +1,9 @@
-package Structures;
+package wireworld.structures;
 
 public class XOR extends Structure {
+    private int  collen = 11;
+    private int rowlend = -2;
+    private int rowlenup = 4;
     public XOR(int startCol, int startRow) {
         super(startCol, startRow);
     }
