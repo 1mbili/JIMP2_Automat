@@ -1,7 +1,6 @@
 package wireworld.gui;
 
 import wireworld.Automat.Automat;
-import wireworld.gui.SecondWindow;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -10,21 +9,17 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
-import static javax.swing.UIManager.getColor;
-
 public class CheckerBoard extends JPanel{
 
     public int[][] getMatrixBoard() {
         return matrixBoard;
     }
 
-    private int[][] matrixBoard;
-    private  JPanel[][] colorboard;
-    private int c = 0;
-    private Timer timer;
-    private int niter;
-    private int rowLength;
-    private int colLength;
+    private final int[][] matrixBoard;
+    private final JPanel[][] colorboard;
+    private final Timer timer;
+    private final int rowLength;
+    private final int colLength;
 
     public void setInterrupted(boolean interrupted) {
         isInterrupted = interrupted;
@@ -32,13 +27,8 @@ public class CheckerBoard extends JPanel{
 
     private volatile boolean isInterrupted;
 
-    public CheckerBoard() {
-    }
-
-    public CheckerBoard(int [][] matrixBoard, int niter) throws InterruptedException {
+    public CheckerBoard(int [][] matrixBoard, int niter) {
         this.matrixBoard = matrixBoard;
-
-        this.niter = niter;
         this.rowLength = matrixBoard.length;
         this.colLength = matrixBoard[0].length;
         this.colorboard = new JPanel[rowLength][colLength];
@@ -61,26 +51,25 @@ public class CheckerBoard extends JPanel{
         Automat automat = new Automat(matrixBoard);
         automat.copy_Matrix(automat.updateMatrix(), matrixBoard);
         timer = new Timer(800, new ActionListener() {
+            int counter = 0;
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (isInterrupted == false){
-                automat.copy_Matrix(automat.updateMatrix(), matrixBoard);
+                if (!isInterrupted){
                 for (int i = 0; i < rowLength; i++) {
                     for (int j = 0; j < colLength; j++) {
                         colorboard[i][j].setBackground(getColor(matrixBoard[i][j]));
                         }
                 }
-                c++;
-                if (c == niter) {
+                automat.copy_Matrix(automat.updateMatrix(), matrixBoard);
+                counter++;
+                System.out.println(niter+"counter" +counter);
+                if (counter == niter) {
                     System.err.println("Timer skończył");
                     timer.stop();
                 }
             }
             }});
         timer.start();
-    }
-    public Timer getTimer() {
-        return this.timer;
     }
 
     public Color getColor(int data) {
