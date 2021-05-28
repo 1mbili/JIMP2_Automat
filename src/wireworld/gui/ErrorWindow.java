@@ -74,7 +74,7 @@ public class ErrorWindow extends WireworldWindow {
     }
 
     @Override
-    public void getIt(int itnr) {
+    public void getNumberIter(int itnr) {
     }
 
 }

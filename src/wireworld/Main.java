@@ -16,8 +16,9 @@ public class Main {
     private static WireworldWindow window;
     private static String pathA;
 
-    public static void main(String[] args) throws InterruptedException, IOException {
+    public static void main(String[] args) {
 
+        // wywołanie okna, które uruchamia program
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 JFrame frame = new JFrame("Wireworld GUI");
@@ -26,22 +27,14 @@ public class Main {
                     public void onOpen(String path) {
                         pathA = path;
                     }
-
                     @Override
-                    public void getIt(int itnr) {
+                    public void getNumberIter(int itnr) {
                         numberIteration = itnr;
                     }
                 };
+            }});
 
-            }
-        });
-//        String path = null;
-//        TimeUnit.SECONDS.sleep(13);
-//        System.out.println(pathA);
-//        Structure_list g = Utils.readFile(pathA);
-//        int[][] sboard = Utils.writeBoard(g, new int[32][32]);
-//        System.out.println(Arrays.deepToString(sboard).replace("], ", "],\n"));
-//        CheckerBoard board = new CheckerBoard(sboard, numberIteration);
+
     }
 }
 
