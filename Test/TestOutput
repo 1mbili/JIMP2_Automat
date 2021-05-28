@@ -1,0 +1,12 @@
+Diode: 0, 3, Normal
+Diode: 0, 9, Reversed
+AND: 0, 15
+ElectronTail: 3, 11
+ElectronHead: 3, 12
+ElectronTail: 16, 10
+ElectronHead: 16, 11
+ElectronHead: 17, 7
+ElectronHead: 17, 9
+ElectronTail: 18, 6
+ElectronHead: 18, 7
+ElectronHead: 19, 7

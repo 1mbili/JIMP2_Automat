@@ -1,9 +1,9 @@
 package wireworld.structures;
 
 public class OR extends Structure {
-    private int collen = 8;
-    private int rowlend = -1;
-    private int rowlenup = 3;
+    private final int collen = 8;
+    private final int rowlend = -1;
+    private final int rowlenup = 3;
     public OR(int startCol, int startRow) {
         super(startCol, startRow);
     }

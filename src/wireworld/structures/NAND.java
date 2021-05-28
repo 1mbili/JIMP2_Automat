@@ -1,9 +1,9 @@
 package wireworld.structures;
 
 public class NAND extends Structure{
-    private int collen = 20;
-    private int rowlend = -1;
-    private int rowlenup = 1;
+    private final int collen = 20;
+    private final int rowlend = -1;
+    private final int rowlenup = 1;
 
     public NAND(int startCol, int startRow) {
         super(startCol, startRow);

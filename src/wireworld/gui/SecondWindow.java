@@ -61,7 +61,8 @@ public class SecondWindow {
     private void createUIComponents () throws IOException, InterruptedException {
         System.out.println(path);
         g = Utils.readFile(path);
-        sboard = Utils.writeBoard(g, new int[26][26]);
+        sboard = new int[24][24];
+        Utils.writeBoard(g,sboard);
 
         checkerBoard = new CheckerBoard(sboard, numberIter);
         board = checkerBoard;

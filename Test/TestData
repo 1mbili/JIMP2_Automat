@@ -2,7 +2,7 @@ Diode: 0, 3, Normal
 Diode: 0, 9, Reversed
 AND: 0, 15
 ElectronHead: 0, 15
-ElectronHead: 0, 22
+ElectronHead: 0, 18
 ElectronHead: 1, 3
 ElectronHead: 1, 9
 ElectronTail: 0, 3

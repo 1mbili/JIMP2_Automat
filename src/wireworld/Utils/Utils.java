@@ -1,12 +1,7 @@
 package wireworld.Utils;
-
-
 import wireworld.structures.*;
-
-
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Arrays;
 
 public class Utils {
 
@@ -44,9 +39,23 @@ public class Utils {
 
         return null;
     }
+    private static void removeBack(Structure_list slist){
+        int[] mem = new int[slist.size()]; //usuwam electronhead i tail po indeksie
+        int c = 0;
+        int n = 0;
+        for (Structure st : slist) {
+            if ((st instanceof ElectronHead || st instanceof ElectronTail)) {
+                mem[n++] = c;
+                c--;
+            }
+            c++;
+        }
+        for (int i : mem)
+            if (i != 0)
+                slist.remove(i);
+    }
 
-    public static int[][] writeBoard(Structure_list slist, int[][] board) {
-        // Nie można usuwać podczas iteracji, kod do porawy niezbyt elegancko to wygląda.
+    public static void writeBoard(Structure_list slist, int[][] board) {
         int[] mem = new int[slist.size()]; //usuwam electronhead i tail po indeksie
         int c = 0;
         int n = 0;
@@ -61,18 +70,6 @@ public class Utils {
         for (int i : mem)
             if (i != 0)
                 slist.remove(i);
-        return board;
-    }
-    public static int[][] writeBoard2(Structure_list slist, int[][] board) {
-        // Nie można usuwać podczas iteracji, kod do porawy niezbyt elegancko to wygląda.
-         Structure_list tmp = new Structure_list();
-        for (Structure st : slist) {
-            st.addstruct(board);
-            if (!(st instanceof ElectronHead || st instanceof ElectronTail)) {
-                tmp.add(st);
-            }
-        }
-        return board;
     }
 
     private static void writeState(Structure_list slist, int[][] board) {
@@ -91,12 +88,15 @@ public class Utils {
 
 
     public static void writeFile(Structure_list slist, String filepath, int[][] board) throws IOException {
+        removeBack(slist);
         writeState(slist, board);
-        FileWriter writer = new FileWriter(filepath);
-        for (Structure st : slist) {
-            writer.write(st + "\n");
-        }
+        PrintWriter  writer = new PrintWriter (filepath);
         writer.close();
+        PrintWriter  writer2 = new PrintWriter (filepath);
+        for (Structure st : slist) {
+            writer2.write(st + "\n");
+        }
+        writer2.close();
     }
 
 
