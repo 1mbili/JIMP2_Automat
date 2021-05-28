@@ -1,15 +1,12 @@
 package wireworld.gui;
 
-
-import wireworld.*;
 import wireworld.Utils.Utils;
 import wireworld.structures.Structure_list;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
 
 
 public class SecondWindow {
@@ -22,19 +19,12 @@ public class SecondWindow {
     private JFrame actual;
     private JFrame frame;
 
-    private int [][] sboard;
-    private String path;
-    private int numberIter;
+    private int[][] sboard;
+    private final String path;
+    private final int numberIter;
     private CheckerBoard checkerBoard;
     private Structure_list g;
-    //private Timer timer;
-
-    public SecondWindow() {
-        setGoBackButton();
-        setStopButton();
-        setNextStepButton();
-        setDownloadButton();
-    }
+    private String fileName = null;
 
     // w przypadku lokalnych danych
     public SecondWindow(int numberIter) {
@@ -58,64 +48,59 @@ public class SecondWindow {
         setDownloadButton();
     }
 
-    private void createUIComponents () throws IOException, InterruptedException {
+    private void createUIComponents() throws IOException {
         System.out.println(path);
         g = Utils.readFile(path);
-        sboard = new int[24][24];
-        Utils.writeBoard(g,sboard);
-
+        sboard = Utils.writeBoard(g, new int[26][26]);
         checkerBoard = new CheckerBoard(sboard, numberIter);
         board = checkerBoard;
     }
 
-    public void setDownloadButton () {
-        downloadButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+    public void setDownloadButton() {
+        downloadButton.addActionListener(e -> {
+            JFileChooser fileChooser = new JFileChooser();
+            int returnVal = fileChooser.showOpenDialog((Component) e.getSource());
+            if (returnVal == JFileChooser.APPROVE_OPTION) {
+                File file = fileChooser.getSelectedFile();
                 try {
-                    Utils.writeFile(g, "Test/TestOutput", checkerBoard.getMatrixBoard());
-                } catch (IOException ioException) {
-                    ioException.printStackTrace();
+                    fileName = file.toString();
+                } catch (Exception ex) {
+                    System.out.println("problem accessing file" + file.getAbsolutePath());
                 }
+            } else {
+                System.out.println("File access cancelled by user.");
             }
-        });
-    }
-    public void setStopButton () {
-        stopButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                checkerBoard.setInterrupted(true);
 
-            }
-        });
-    }
-
-    public void setNextStepButton () {
-        nextStepButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                checkerBoard.setInterrupted(false);
+            try {
+                Utils.writeFile(g, fileName, checkerBoard.getMatrixBoard());
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
             }
         });
     }
 
-    public void setGoBackButton () {
-        goBackButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame = new JFrame("Wireworld GUI");
-                WireworldWindow window = new WireworldWindow(frame) {
-                    @Override
-                    public void onOpen(String path) {
-                    }
+    public void setStopButton() {
+        stopButton.addActionListener(e -> checkerBoard.setInterrupted(true));
+    }
 
-                    @Override
-                    public void getIt(int itnr) {
-                    }
+    public void setNextStepButton() {
+        nextStepButton.addActionListener(e -> checkerBoard.setInterrupted(false));
+    }
 
-                };
-                actual.dispose();
-            }
+    public void setGoBackButton() {
+        goBackButton.addActionListener(e -> {
+            frame = new JFrame("Wireworld GUI");
+            WireworldWindow window = new WireworldWindow(frame) {
+                @Override
+                public void onOpen(String path) {
+                }
+
+                @Override
+                public void getNumberIter(int itnr) {
+                }
+
+            };
+            actual.dispose();
         });
     }
 
@@ -125,10 +110,6 @@ public class SecondWindow {
 
     public void setFrame(JFrame fr) {
         this.actual = fr;
-    }
-
-    public JFrame getFrameInstance () {
-        return this.frame;
     }
 
 }

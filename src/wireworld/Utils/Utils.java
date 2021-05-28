@@ -73,10 +73,10 @@ public class Utils {
     }
 
     private static void writeState(Structure_list slist, int[][] board) {
-        int rownum = board.length;
-        int colnum = board[0].length;
-        for (int i = 0; i < rownum; i++) {
-            for (int j = 0; j < colnum; j++)
+        int rowNumber = board.length; 
+        int colNumber = board[0].length;
+        for (int i = 0; i < rowNumber; i++) {
+            for (int j = 0; j < colNumber; j++)
                 if (board[i][j] == 2)
                     slist.add(new ElectronHead(i, j));
                 else if (board[i][j] == 3)

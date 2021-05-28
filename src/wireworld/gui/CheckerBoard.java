@@ -16,7 +16,7 @@ public class CheckerBoard extends JPanel{
     }
 
     private final int[][] matrixBoard;
-    private final JPanel[][] colorboard;
+    private final JPanel[][] colorBoard;
     private final Timer timer;
     private final int rowLength;
     private final int colLength;
@@ -31,8 +31,8 @@ public class CheckerBoard extends JPanel{
         this.matrixBoard = matrixBoard;
         this.rowLength = matrixBoard.length;
         this.colLength = matrixBoard[0].length;
-        this.colorboard = new JPanel[rowLength][colLength];
-        System.out.println(colLength+"j"+rowLength);
+        this.colorBoard = new JPanel[rowLength][colLength];
+        System.out.println(colLength + "j" + rowLength);
         Dimension dims = new Dimension(400 / rowLength, 400 / colLength);
         setLayout(new GridLayout(rowLength, colLength));
         setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -44,7 +44,7 @@ public class CheckerBoard extends JPanel{
                 b.setBorder(new LineBorder(Color.WHITE));
                 b.setBackground(getColor(matrixBoard[i][j]));
                 add(b);
-                colorboard[i][j] = b;
+                colorBoard[i][j] = b;
             }
 
         }
@@ -57,7 +57,7 @@ public class CheckerBoard extends JPanel{
                 if (!isInterrupted){
                 for (int i = 0; i < rowLength; i++) {
                     for (int j = 0; j < colLength; j++) {
-                        colorboard[i][j].setBackground(getColor(matrixBoard[i][j]));
+                        colorBoard[i][j].setBackground(getColor(matrixBoard[i][j]));
                         }
                 }
                 automat.copy_Matrix(automat.updateMatrix(), matrixBoard);
