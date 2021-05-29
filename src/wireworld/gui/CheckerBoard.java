@@ -54,7 +54,7 @@ public class CheckerBoard extends JPanel{
             int counter = 0;
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (!isInterrupted){
+                if (!isInterrupted && niter !=0){
                 for (int i = 0; i < rowLength; i++) {
                     for (int j = 0; j < colLength; j++) {
                         colorBoard[i][j].setBackground(getColor(matrixBoard[i][j]));
