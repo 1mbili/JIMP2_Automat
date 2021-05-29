@@ -51,7 +51,7 @@ public class SecondWindow {
     private void createUIComponents() throws IOException {
         System.out.println(path);
         g = Utils.readFile(path);
-        sboard = Utils.writeBoard(g, new int[26][26]);
+        sboard = Utils.writeBoard(g);
         checkerBoard = new CheckerBoard(sboard, numberIter);
         board = checkerBoard;
     }

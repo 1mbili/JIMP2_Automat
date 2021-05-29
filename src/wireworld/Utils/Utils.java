@@ -5,6 +5,7 @@ import java.lang.reflect.InvocationTargetException;
 
 public class Utils {
 
+
     public static Structure_list readFile(String path) throws IOException {
 
         Structure_list s = new Structure_list();
@@ -39,7 +40,7 @@ public class Utils {
 
         return null;
     }
-    private static void removeBack(Structure_list slist){
+    private static void removeElectron(Structure_list slist){
         int[] mem = new int[slist.size()]; //usuwam electronhead i tail po indeksie
         int c = 0;
         int n = 0;
@@ -55,22 +56,29 @@ public class Utils {
                 slist.remove(i);
     }
 
-    public static void writeBoard(Structure_list slist, int[][] board) {
-        int[] mem = new int[slist.size()]; //usuwam electronhead i tail po indeksie
-        int c = 0;
-        int n = 0;
-        for (Structure st : slist) {
-            st.addstruct(board);
-            if ((st instanceof ElectronHead || st instanceof ElectronTail)) {
-                mem[n++] = c;
-                c--;
-            }
-            c++;
-        }
-        for (int i : mem)
-            if (i != 0)
-                slist.remove(i);
+    public static int[][] extendBoard(int [][]matrix){
+        int rowNumber = matrix.length;
+        int colNumber = matrix[0].length;
+        int delta = 6;
+        int [][] board = new int[rowNumber+delta][colNumber+delta];
+        for (int i=0; i < rowNumber;i++)
+            System.arraycopy(matrix[i],0, board[i],0,colNumber);
+        return board;
     }
+
+
+    public static int [][] writeBoard(Structure_list slist) {
+        int [][]board  = new int[16][16];
+        for (Structure st : slist){
+            boolean isOutOfBounds =  true;
+            while (isOutOfBounds)
+                try{
+            st.addstruct(board);
+            isOutOfBounds= false;
+                }
+                catch (ArrayIndexOutOfBoundsException e){
+                    board=extendBoard(board);}}
+        return board;}
 
     private static void writeState(Structure_list slist, int[][] board) {
         int rowNumber = board.length; 
@@ -88,7 +96,7 @@ public class Utils {
 
 
     public static void writeFile(Structure_list slist, String filepath, int[][] board) throws IOException {
-        removeBack(slist);
+        removeElectron(slist);
         writeState(slist, board);
         PrintWriter  writer = new PrintWriter (filepath);
         writer.close();
