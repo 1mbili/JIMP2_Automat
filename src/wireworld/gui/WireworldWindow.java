@@ -3,6 +3,8 @@ package wireworld.gui;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 
 
@@ -46,15 +48,23 @@ public abstract class WireworldWindow {
             }
         });
         // używa się lambda
-        numberField.addActionListener(e -> {
+//        ok.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                String text;
+//                text = numberField.getText();
+//                intValue = Integer.parseInt(text);
+//                WireworldWindow.this.getNumberIter(intValue);
+//            }
+//        });
+
+        startButton.addActionListener(e -> {
             String text;
             text = numberField.getText();
             intValue = Integer.parseInt(text);
             WireworldWindow.this.getNumberIter(intValue);
-        });
 
-        startButton.addActionListener(e -> {
-            if (!isInteger(numberField.getText())) { // sprawdza czy są wprowadzone dane, jeśli nie, to tworzy nowe okno
+            if (!isInteger(numberField.getText()) ) { // sprawdza czy są wprowadzone dane, jeśli nie, to tworzy nowe okno
                 SwingUtilities.invokeLater(() -> {
                     System.out.println(numberField.getText());
                     JFrame frameErr = new JFrame("Error");
@@ -69,7 +79,7 @@ public abstract class WireworldWindow {
             } else {
                 SwingUtilities.invokeLater(() -> {
                     SecondWindow myWindow;
-                    if(isFileEmpty())
+                    if (isFileEmpty())
                         myWindow = new SecondWindow(intValue);
                     else
                         myWindow = new SecondWindow(intValue, direction);
@@ -85,7 +95,9 @@ public abstract class WireworldWindow {
             }
         });
     }
-    public WireworldWindow() { }
+    public WireworldWindow() {
+    }
+
 
     public boolean isFileEmpty() {
         return selected == null;
@@ -94,6 +106,7 @@ public abstract class WireworldWindow {
     private void createUIComponents() {
         // TODO: place custom component creation code here
     }
+
     public JPanel getRootPanel() {
         return this.rootPanel;
     }

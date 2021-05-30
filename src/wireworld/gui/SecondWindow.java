@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
 
 public class SecondWindow {
@@ -30,7 +31,7 @@ public class SecondWindow {
     public SecondWindow(int numberIter) {
         super();
         this.numberIter = numberIter;
-        this.path = "Test/TestData";
+        this.path = "Test/TestData2";
         setGoBackButton();
         setStopButton();
         setNextStepButton();
@@ -59,16 +60,23 @@ public class SecondWindow {
     public void setDownloadButton() {
         downloadButton.addActionListener(e -> {
             JFileChooser fileChooser = new JFileChooser();
-            int returnVal = fileChooser.showOpenDialog((Component) e.getSource());
-            if (returnVal == JFileChooser.APPROVE_OPTION) {
+            fileChooser.setDialogTitle("Specify a file to save");
+            int userSelection = fileChooser.showSaveDialog(frame);
+
+            if (userSelection == JFileChooser.APPROVE_OPTION) {
                 File file = fileChooser.getSelectedFile();
+                System.out.println("File: " + file.getAbsolutePath());
                 try {
                     fileName = file.toString();
                 } catch (Exception ex) {
                     System.out.println("problem accessing file" + file.getAbsolutePath());
                 }
+                String text = getFileExtension(fileName);
+                boolean isEqual = "txt".equals( text) || "".equals(text);
+                if (!isEqual)
+                    throw new IllegalArgumentException("Zly format pliku");
             } else {
-                System.out.println("File access cancelled by user.");
+                System.out.println("File wasn't saved.");
             }
 
             try {
@@ -77,6 +85,15 @@ public class SecondWindow {
                 ioException.printStackTrace();
             }
         });
+    }
+
+    public static String getFileExtension(String fullName) {
+        if (fullName != null) {
+            String fileName = new File(fullName).getName();
+            int dotIndex = fileName.lastIndexOf('.');
+            return ( dotIndex == -1 ) ? "" : fileName.substring(dotIndex + 1);
+        }
+        return null;
     }
 
     public void setStopButton() {
