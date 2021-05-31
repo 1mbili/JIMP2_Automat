@@ -1,11 +1,18 @@
 package wireworld.structures;
 
 public class NAND extends Structure{
-    private final int rowlend = -1;
+
+    private final int rowlend = 0;
 
     public NAND(int startCol, int startRow) {
         super(startCol, startRow);
     }
+
+    @Override
+    public boolean isOutOfBoard() {
+        return this.rowlend+this.startRow < 0;
+    }
+
 
     @Override
     public void addstruct(int[][] board) {

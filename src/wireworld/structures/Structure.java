@@ -14,6 +14,12 @@ public class Structure {
         this.startRow = startRow;
     }
 
+    public boolean isOutOfBoard(){
+        if (this.startRow+this.rowlend < 0)
+            return true;
+        return false;
+    }
+
     public void addstruct(int [][] board) {}
 
     @Override

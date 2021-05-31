@@ -5,3 +5,5 @@ ElectronHead: 0, 22
 NAND: 22, 6
 Hwire: 20, 6, 22
 Hwire: 20, 16, 22
+Diode: 0, 32, Normal
+XOR: 0, 0

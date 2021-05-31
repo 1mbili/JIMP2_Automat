@@ -60,10 +60,11 @@ public class Utils {
                 slist.remove(i);
     }
 
+
     public static int[][] extendBoard(int [][]matrix){
         int rowNumber = matrix.length;
         int colNumber = matrix[0].length;
-        int delta = 6;
+        int delta = 4;
         return new int[rowNumber+delta][colNumber+delta];
     }
 
@@ -72,19 +73,24 @@ public class Utils {
         int [][]board  = new int[16][16];
         for (Structure st : slist){
             boolean isOutOfBounds =  true;
+            isOutOfBounds = !st.isOutOfBoard();
             while (isOutOfBounds)
                 try{
             st.addstruct(board);
             isOutOfBounds= false;
+
                 }
                 catch (ArrayIndexOutOfBoundsException e){
                     board=extendBoard(board);}}
         int rowNumber = board.length;
         int colNumber = board[0].length;
         board = new int[rowNumber][colNumber];
-        for (Structure st : slist)
+        for (Structure st : slist) {
+            if (!st.isOutOfBoard())
             st.addstruct(board);
-
+            else
+            System.err.println("Nie można dodać struktury: "+ st+ " Ponieważ jej początkowa pozycaj wiersza jest zbyt mała");
+        }
         return board;}
 
     private static void writeState(Structure_list slist, int[][] board) {

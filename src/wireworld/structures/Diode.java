@@ -4,12 +4,19 @@ package wireworld.structures;
 public class Diode extends Structure {
 
     private final String type;
+
     private final int rowlend = -1;
 
     public Diode(int startCol, int startRow, String type) {
         super(startCol, startRow);
         this.type = type;
     }
+
+    @Override
+    public boolean isOutOfBoard() {
+        return this.rowlend+this.startRow < 0;
+    }
+
 
     @Override
     public void addstruct(int [][] board) {

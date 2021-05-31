@@ -7,6 +7,11 @@ public class XOR extends Structure {
     }
 
     @Override
+    public boolean isOutOfBoard() {
+        return this.rowlend+this.startRow < 0;
+    }
+
+    @Override
     public void addstruct(int[][] board) {
         int lp = 3; //liczba przewodników
         for (int i =0; i< 3; i+=2)
