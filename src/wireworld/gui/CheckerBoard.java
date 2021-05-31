@@ -48,18 +48,18 @@ public class CheckerBoard extends JPanel{
 
         }
         Automat automat = new Automat(matrixBoard);
-        automat.copy_Matrix(automat.updateMatrix(), matrixBoard);
         timer = new Timer(750, new ActionListener() {
             int counter = 0;
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!isInterrupted && niter !=0){
-                for (int i = 0; i < rowLength; i++) {
+                    automat.copy_Matrix(automat.updateMatrix(), matrixBoard);
+
+                    for (int i = 0; i < rowLength; i++) {
                     for (int j = 0; j < colLength; j++) {
                         colorBoard[i][j].setBackground(getColor(matrixBoard[i][j]));
                         }
                 }
-                automat.copy_Matrix(automat.updateMatrix(), matrixBoard);
                 counter++;
                 if (counter == niter) {
                     System.err.println("Timer skończył");

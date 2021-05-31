@@ -2,6 +2,8 @@ package wireworld.Utils;
 import wireworld.structures.*;
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
+import java.util.Iterator;
 
 public class Utils {
 
@@ -44,22 +46,6 @@ public class Utils {
 
         return null;
     }
-    private static void removeElectron(Structure_list slist){
-        int[] mem = new int[slist.size()]; //usuwam electronhead i tail po indeksie
-        int c = 0;
-        int n = 0;
-        for (Structure st : slist) {
-            if ((st instanceof ElectronHead || st instanceof ElectronTail)) {
-                mem[n++] = c;
-                c--;
-            }
-            c++;
-        }
-        for (int i : mem)
-            if (i != 0)
-                slist.remove(i);
-    }
-
 
     public static int[][] extendBoard(int [][]matrix){
         int rowNumber = matrix.length;
@@ -109,10 +95,11 @@ public class Utils {
 
 
     public static void writeFile(Structure_list slist, String filepath, int[][] board) throws IOException {
-        removeElectron(slist);
+        slist.removeElectron();
         writeState(slist, board);
         PrintWriter  writer = new PrintWriter (filepath);
         for (Structure st : slist) {
+            System.out.println(st);
             writer.write(st + "\n");
         }
         writer.close();
