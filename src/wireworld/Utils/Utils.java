@@ -24,13 +24,17 @@ public class Utils {
         String line = lineorg.replaceAll(":|,", "");
         String[] w = line.split(" ");
         w[0] = "wireworld.structures." + w[0];
+
         try {
-            Class<Structure> c = (Class<Structure>) Class.forName(w[0]);
+            Class c = Class.forName(w[0]);
             if (c.getName().equals("wireworld.structures.Diode") && w.length == 4) {
-                return c.getDeclaredConstructor(int.class, int.class, String.class).newInstance(Integer.parseInt(w[1]), Integer.parseInt(w[2]), w[3]);
+                return (Structure) c.getDeclaredConstructor(int.class, int.class, String.class).newInstance(Integer.parseInt(w[1]), Integer.parseInt(w[2]), w[3]);
+            }
+            if (c.getName().matches("wireworld\\.structures\\.(Hwire|Vwire)") && w.length == 4) {
+                return (Structure) c.getDeclaredConstructor(int.class, int.class, int.class).newInstance(Integer.parseInt(w[1]), Integer.parseInt(w[2]), Integer.parseInt(w[3]));
             }
             if (c.getName().matches("wireworld\\.structures\\.(AND|OR|XOR|NAND|ElectronHead|ElectronTail)") && w.length == 3) {
-                return c.getDeclaredConstructor(int.class, int.class).newInstance(Integer.parseInt(w[1]), Integer.parseInt(w[2]));
+                return (Structure) c.getDeclaredConstructor(int.class, int.class).newInstance(Integer.parseInt(w[1]), Integer.parseInt(w[2]));
             }
         } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
             System.err.println(e + w[0] + " Brak takiej klasy lub metody");
@@ -60,10 +64,7 @@ public class Utils {
         int rowNumber = matrix.length;
         int colNumber = matrix[0].length;
         int delta = 6;
-        int [][] board = new int[rowNumber+delta][colNumber+delta];
-        for (int i=0; i < rowNumber;i++)
-            System.arraycopy(matrix[i],0, board[i],0,colNumber);
-        return board;
+        return new int[rowNumber+delta][colNumber+delta];
     }
 
 
@@ -78,6 +79,12 @@ public class Utils {
                 }
                 catch (ArrayIndexOutOfBoundsException e){
                     board=extendBoard(board);}}
+        int rowNumber = board.length;
+        int colNumber = board[0].length;
+        board = new int[rowNumber][colNumber];
+        for (Structure st : slist)
+            st.addstruct(board);
+
         return board;}
 
     private static void writeState(Structure_list slist, int[][] board) {
@@ -99,12 +106,10 @@ public class Utils {
         removeElectron(slist);
         writeState(slist, board);
         PrintWriter  writer = new PrintWriter (filepath);
-        writer.close();
-        PrintWriter  writer2 = new PrintWriter (filepath);
         for (Structure st : slist) {
-            writer2.write(st + "\n");
+            writer.write(st + "\n");
         }
-        writer2.close();
+        writer.close();
     }
 
 

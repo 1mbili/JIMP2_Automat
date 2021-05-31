@@ -32,7 +32,6 @@ public class CheckerBoard extends JPanel{
         this.rowLength = matrixBoard.length;
         this.colLength = matrixBoard[0].length;
         this.colorBoard = new JPanel[rowLength][colLength];
-        System.out.println(colLength + "j" + rowLength);
         Dimension dims = new Dimension(400 / rowLength, 400 / colLength);
         setLayout(new GridLayout(rowLength, colLength));
         setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -50,7 +49,7 @@ public class CheckerBoard extends JPanel{
         }
         Automat automat = new Automat(matrixBoard);
         automat.copy_Matrix(automat.updateMatrix(), matrixBoard);
-        timer = new Timer(800, new ActionListener() {
+        timer = new Timer(750, new ActionListener() {
             int counter = 0;
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -62,7 +61,6 @@ public class CheckerBoard extends JPanel{
                 }
                 automat.copy_Matrix(automat.updateMatrix(), matrixBoard);
                 counter++;
-                System.out.println(niter+"counter" +counter);
                 if (counter == niter) {
                     System.err.println("Timer skończył");
                     timer.stop();

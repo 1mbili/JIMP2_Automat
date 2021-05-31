@@ -1,0 +1,7 @@
+NAND: 0, 0
+NAND: 0, 12
+ElectronHead: 0, 12
+ElectronHead: 0, 22
+NAND: 22, 6
+Hwire: 20, 6, 22
+Hwire: 20, 16, 22

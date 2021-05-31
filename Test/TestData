@@ -1,5 +1,7 @@
 Diode: 0, 3, Normal
 Diode: 0, 9, Reversed
+Hwire: 9, 13, 19
+Vwire: 9, 3, 9
 AND: 0, 15
 NAND: 31, 39
 ElectronHead: 0, 15
