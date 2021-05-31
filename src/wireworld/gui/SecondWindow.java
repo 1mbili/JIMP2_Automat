@@ -31,7 +31,7 @@ public class SecondWindow {
     public SecondWindow(int numberIter) {
         super();
         this.numberIter = numberIter;
-        this.path = "Test/TestData1";
+        this.path = "Test/TestData2";
         setGoBackButton();
         setStopButton();
         setNextStepButton();

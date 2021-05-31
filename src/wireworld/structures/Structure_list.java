@@ -11,10 +11,6 @@ public class Structure_list  implements Iterable<Structure> {
 
     public void add(Structure s) {struktury.add(s);}
 
-    private int size() { return struktury.size(); }
-
-    private void remove(int n){struktury.remove(n);}
-
     public void removeElectron(){
         Iterator<Structure> itr = this.struktury.iterator();
         while(itr.hasNext()) {

@@ -2,8 +2,6 @@ package wireworld.Utils;
 import wireworld.structures.*;
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Arrays;
-import java.util.Iterator;
 
 public class Utils {
 
@@ -57,14 +55,13 @@ public class Utils {
 
     public static int [][] writeBoard(Structure_list slist) {
         int [][]board  = new int[16][16];
+        boolean isOutOfBounds;
         for (Structure st : slist){
-            boolean isOutOfBounds =  true;
             isOutOfBounds = !st.isOutOfBoard();
             while (isOutOfBounds)
                 try{
             st.addstruct(board);
             isOutOfBounds= false;
-
                 }
                 catch (ArrayIndexOutOfBoundsException e){
                     board=extendBoard(board);}}
@@ -92,7 +89,6 @@ public class Utils {
 
 
     }
-
 
     public static void writeFile(Structure_list slist, String filepath, int[][] board) throws IOException {
         slist.removeElectron();
