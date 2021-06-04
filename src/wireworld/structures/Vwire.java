@@ -11,9 +11,7 @@ public class Vwire extends Structure {
 
     @Override
     public void addstruct(int[][] board) {
-        System.out.println(startRow+";"+endRow+";"+startCol);
         for (int i = startRow; i < endRow;i++){
-            System.out.println(i+"h"+startCol);
             board[i][startCol] = 1;
     }
 }}

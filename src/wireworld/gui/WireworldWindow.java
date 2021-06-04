@@ -47,16 +47,6 @@ public abstract class WireworldWindow {
                 direction = f.getPath();
             }
         });
-        // używa się lambda
-//        ok.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                String text;
-//                text = numberField.getText();
-//                intValue = Integer.parseInt(text);
-//                WireworldWindow.this.getNumberIter(intValue);
-//            }
-//        });
 
         startButton.addActionListener(e -> {
             String text;
@@ -66,7 +56,6 @@ public abstract class WireworldWindow {
 
             if (!isInteger(numberField.getText()) ) { // sprawdza czy są wprowadzone dane, jeśli nie, to tworzy nowe okno
                 SwingUtilities.invokeLater(() -> {
-                    System.out.println(numberField.getText());
                     JFrame frameErr = new JFrame("Error");
                     frameErr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     frameErr.setPreferredSize(new Dimension(350, 300));

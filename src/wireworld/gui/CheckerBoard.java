@@ -62,7 +62,6 @@ public class CheckerBoard extends JPanel{
                 }
                 counter++;
                 if (counter == niter) {
-                    System.err.println("Timer skończył");
                     timer.stop();
                 }
             }

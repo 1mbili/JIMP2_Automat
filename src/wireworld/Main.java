@@ -1,15 +1,8 @@
 package wireworld;
 
-import wireworld.Automat.Automat;
-import wireworld.Utils.Utils;
 import wireworld.gui.WireworldWindow;
-import wireworld.structures.*;
 
 import javax.swing.*;
-import java.io.IOException;
-import java.sql.SQLOutput;
-import java.util.Arrays;
-import java.util.concurrent.TimeUnit;
 
 public class Main {
     private static int numberIteration;

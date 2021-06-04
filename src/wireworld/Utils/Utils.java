@@ -95,7 +95,6 @@ public class Utils {
         writeState(slist, board);
         PrintWriter  writer = new PrintWriter (filepath);
         for (Structure st : slist) {
-            System.out.println(st);
             writer.write(st + "\n");
         }
         writer.close();

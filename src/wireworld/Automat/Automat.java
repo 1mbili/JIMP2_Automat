@@ -1,11 +1,5 @@
 package wireworld.Automat;
 
-import wireworld.structures.*;
-
-import javax.swing.*;
-import java.awt.*;
-import java.util.Arrays;
-
 /* stany:
  0 - puste
  1 - przewodnik
@@ -77,10 +71,6 @@ public class Automat {
                 }
             copy_Matrix(nextIterationBoard, actualBoard);
                 return actualBoard;
-        }
-
-        public int[][] getActualBoard () {
-            return this.actualBoard;
         }
 
 }
